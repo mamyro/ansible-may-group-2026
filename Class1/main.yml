@@ -1,0 +1,35 @@
+- hosts: all
+  become: true
+  vars:
+    php_packages:
+      - ghostscript 
+      - libapache2-mod-php 
+      - php 
+      - php-bcmath 
+      - php-curl 
+      - php-imagick 
+      - php-intl 
+      - php-json 
+      - php-mbstring 
+      - php-mysql 
+      - php-xml 
+      - php-zip
+
+  tasks:
+  - name: Install apache
+    include_tasks: apache.yml
+  - name: Install php
+    include_tasks: php.yml
+  - name: Download WordPress
+    include_tasks: wordpress.yml
+  - name: Install mysql server
+    include_tasks: db.yml
+  
+
+
+
+
+
+
+      
+    

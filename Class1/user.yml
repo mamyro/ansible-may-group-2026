@@ -1,0 +1,12 @@
+- hosts: all
+  become: true
+  tasks:
+  - name: Create user
+    ansible.builtin.unarchive:
+      name: "{{ item }}"
+    loop:
+      - jenny
+      - rose
+      - jisoo
+      - lisa
+

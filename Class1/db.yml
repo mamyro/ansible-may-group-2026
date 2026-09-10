@@ -1,0 +1,29 @@
+- name: Install mysql server
+  ansible.builtin.apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+
+- name: Start service mysql
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: true
+
+- name: Install PyMySQL
+  ansible.builtin.apt:
+    name: python3-pymysql
+
+- name: Create a new database
+  ansible.mysql.mysql_db:
+    name: kaizen
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: Create database user
+  ansible.mysql.mysql_user:
+    name: bob
+    password: kaizen123
+    priv: '*.*:ALL'
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
